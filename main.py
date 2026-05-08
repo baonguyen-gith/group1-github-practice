@@ -1,16 +1,19 @@
-from book import BookManager
-from utils import show_menu
+from services.book_manager import BookManager
+from utils.menu import show_menu
 
 manager = BookManager()
 
 while True:
     show_menu()
+
     choice = input("Chọn chức năng: ")
 
     if choice == "1":
-        title = input("Nhập tên sách: ")
-        author = input("Nhập tác giả: ")
-        book_id = input("Nhập mã sách: ")
+        print("\n===== THÊM SÁCH =====")
+
+        title = input("Tên sách: ")
+        author = input("Tác giả: ")
+        book_id = input("Mã sách: ")
 
         manager.add_book(title, author, book_id)
 
@@ -18,12 +21,12 @@ while True:
         manager.show_books()
 
     elif choice == "3":
-        keyword = input("Nhập tên hoặc mã sách cần tìm: ")
+        keyword = input("Nhập từ khóa tìm kiếm: ")
         manager.search_book(keyword)
 
     elif choice == "4":
-        print("Thoát chương trình.")
+        print("Đang thoát chương trình...")
         break
 
     else:
-        print("Lựa chọn không hợp lệ!")
+        print(">> Lựa chọn không hợp lệ.")
