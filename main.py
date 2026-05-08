@@ -1,6 +1,6 @@
 from services.book_manager import BookManager
 from services.category_manager import CategoryManager
-from utils import show_menu # Lưu ý: nếu utils là file utils.py thì dùng 'from utils'
+from utils.menu import show_menu 
 
 def main():
     book_manager = BookManager()
@@ -12,32 +12,35 @@ def main():
 
         if choice == "1":
             print("\n===== THÊM SÁCH =====")
-            title = input("Tên sách: ")
-            author = input("Tác giả: ")
-            book_id = input("Mã sách: ")
-            book_manager.add_book(title, author, book_id)
+            title = input("Tên sách: ").strip()
+            author = input("Tác giả: ").strip()
+            book_id = input("Mã sách: ").strip()
+
+            if not title or not author or not book_id:
+                print(">> Lỗi: Vui lòng nhập đầy đủ thông tin (Tên sách, Tác giả, Mã sách) không được để trống!")
+            else:
+                book_manager.add_book(title, author, book_id)
+                print(f">> Đã thêm sách '{title}' thành công!")
 
         elif choice == "2":
             book_manager.show_books()
 
         elif choice == "3":
-            keyword = input("Nhập từ khóa tìm kiếm (Tên hoặc Mã sách): ")
-            book_manager.search_book(keyword)
+            keyword = input("Nhập từ khóa tìm kiếm: ").strip()
+            
+            if keyword:
+                book_manager.search_book(keyword) 
+            else:
+                print(">> Lỗi: Vui lòng nhập từ khóa để tìm kiếm!")
 
         elif choice == "4":
-            print("\n===== THÊM THỂ LOẠI =====")
-            cat_id = input("Mã thể loại: ")
-            name = input("Tên thể loại: ")
-            cat_manager.add_category(cat_id, name)
-
+            print("Đang thoát chương trình...")
+            break
+            
         elif choice == "5":
             cat_manager.show_categories()
 
-        elif choice == "6":
-            print("Đang thoát chương trình... Tạm biệt!")
-            break
         else:
-            print(">> Lựa chọn không hợp lệ. Vui lòng nhập từ 1 đến 6.")
-
+            print(">> Lựa chọn không hợp lệ.")
 if __name__ == "__main__":
     main()
