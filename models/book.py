@@ -5,10 +5,10 @@ class Book:
         self.book_id = book_id
 
     def display(self):
-        print(f"Mã sách: {self.book_id}")
-        print(f"Tên sách: {self.title}")
-        print(f"Tác giả: {self.author}")
-        print("-" * 25)
+        print(f"Mã sách   : {self.book_id}")
+        print(f"Tên sách  : {self.title}")
+        print(f"Tác giả   : {self.author}")
+        print("-" * 30)
 
 
 class BookManager:
